@@ -1,0 +1,90 @@
+.gallery-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .album-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .album-item {
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .album-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .album-cover {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .gallery-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .gallery-title {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .gallery-nav {
+    position: absolute;
+    top: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  .gallery-prev {
+    left: 20px;
+  }
+  
+  .gallery-next {
+    right: 20px;
+  }
+  
+  .gallery-image {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .photo-info {
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }

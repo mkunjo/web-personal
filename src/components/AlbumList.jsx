@@ -1,17 +1,17 @@
 import React from "react";
-import { albums } from "../../public/assets/Albums";
+import { albums } from "../Albums";
 
-function AlbumList({ setSelectedAlbum }) {
+function AlbumList({ onAlbumClick }) {
   return (
     <div className="album-list">
       {albums.map((album) => (
         <div
           key={album.id}
-          className="album-item"
-          onClick={() => setSelectedAlbum(album)}
+          className="album"
+          onClick={() => onAlbumClick(album)}
         >
-          <img src={album.coverImage} alt={album.title} className="album-cover" />
-          <h3 className="album-title">{album.title}</h3>
+          <img src={album.coverImage} alt={album.name} className="album-cover" />
+          <p>{album.name}</p>
         </div>
       ))}
     </div>
