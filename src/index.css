@@ -123,3 +123,61 @@ text-align: right;
 .nav-links a:hover {
   color: #94d2bd; /* Light teal */
 }
+
+/* Flight Log CSS */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  color: white; 
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #EEAB44; 
+  color: white; 
+}
+
+.flight-log {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flight-entry {
+  background-color: #EEAB44;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white; 
+}
+
+.flight-date {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.aircraft, .route, .instructor, .dual-received, .pic-time, .total-time {
+  color: white; 
+  margin-bottom: 0.5rem;
+}
+
+.flight-entry .dual-received,
+.flight-entry .pic-time,
+.flight-entry .total-time {
+  font-style: italic;
+}

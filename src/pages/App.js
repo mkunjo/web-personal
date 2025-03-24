@@ -4,6 +4,7 @@ import MainContent from '../components/MainContent';
 import Footer from '../components/Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GalleryPage from "./GalleryPage";
+import FlightLog from '../components/FlightLog';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/FlightLog" element={<FlightLog />} />
         </Routes>
         <Footer />
       </div>
