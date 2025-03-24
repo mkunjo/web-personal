@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import AlbumList from "../components/AlbumList";
 import PhotoGallery from "../components/PhotoGallery";
+import './GalleryPage.css';
+
 
 function GalleryPage() {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
