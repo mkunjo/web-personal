@@ -4,7 +4,7 @@ import "../index.css";
 const Terminal = () => {
     const [input, setInput] = useState("");
     const [history, setHistory] = useState([
-        { output: "Welcome to Muhammad Kunjo's Interactive Terminal" },
+        { output: "Welcome to my Terminal" },
         { output: "Type 'help' to see available commands." },
         { output: `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⣀⣀⣠⣤⠴⠦⠶⠿⠿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠿⠷⠶⠦⠤⢤⣤⣀⣀⣀⠀⠀⠀⠀⠀⠀
