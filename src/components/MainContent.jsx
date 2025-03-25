@@ -97,8 +97,7 @@ const MainContent = () => {
             <div className="hobby-text">
                 <h3>Film Photography</h3>
                 <p>Film fanatic and amateur photographer. Currently shooting on 35mm film with a 1980 Nikon F3.
-                    For now, please enjoy using this <a href="https://photos.app.goo.gl/UPQbE5UYDwenfM3V7" target="_blank">Google Photos</a> link.
-                    Coming soon: a gallery page!</p>
+                    I'm happy to share my work and have made several albums available on my <a href="/gallery">gallery</a> page!</p>
             </div>
         </div>
         <div className="hobby-row hobby-even">

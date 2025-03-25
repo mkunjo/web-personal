@@ -1,5 +1,5 @@
 import React from "react";
-import { albums } from "../Albums";
+import { albums } from "../js/Albums";
 
 function AlbumList({ onAlbumClick }) {
   return (

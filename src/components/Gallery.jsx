@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import AlbumList from "../components/AlbumList";
-import PhotoGallery from "../components/PhotoGallery";
-import './GalleryPage.css';
+import AlbumList from "./AlbumList";
+import PhotoGallery from "./PhotoGallery";
+import '../index.css';
 
 
-function GalleryPage() {
+function Gallery() {
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,4 +33,4 @@ function GalleryPage() {
   );
 }
 
-export default GalleryPage;
+export default Gallery;
