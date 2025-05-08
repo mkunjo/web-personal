@@ -28,7 +28,7 @@ const MainContent = () => {
                   <em>Portfolio Site for <strong>MK</strong>.</em>
                 </p>
                 <a href="https://github.com/mkunjo">Github</a>
-                <a href="contact-me.html">Contact Me</a>
+                <a href="#/contact-me">Contact Me</a>
               </td>
             </tr>
           </tbody>
@@ -97,7 +97,7 @@ const MainContent = () => {
             <div className="hobby-text">
                 <h3>Film Photography</h3>
                 <p>Film fanatic and amateur photographer. Currently shooting on 35mm film with a 1980 Nikon F3.
-                    I'm happy to share my work and have made several albums available on my <a href="/gallery">gallery</a> page!</p>
+                    I'm happy to share my work and have made several albums available on my <a href="#/Gallery">gallery</a> page!</p>
             </div>
         </div>
         <div className="hobby-row hobby-even">
@@ -106,7 +106,8 @@ const MainContent = () => {
                 <h3>Aircraft Pilot</h3>
                 <p>Currently a student pilot with 10 hours of flight time flying primarily Piper Cherokee Aircrafts.
                     Proficient in: Takeoffs, Landings, Climb, Straight & level flight, Slow flight,
-                    Power off stalls, Steep turning, & Radio calls. Currently preparing for first solo-flight!</p>
+                    Power off stalls, Steep turning, & Radio calls. Currently preparing for first solo-flight!
+                    I keep track of each flight on the <a href='#/FlightLog'>Flight Log</a> page! </p>
             </div>
         </div>
     </div>
