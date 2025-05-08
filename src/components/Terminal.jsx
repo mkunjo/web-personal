@@ -183,28 +183,33 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
     };
 
     return (
-        <div className="terminal" onClick={() => inputRef.current.focus()}>
-            <div className="terminal-header">Interactive Terminal</div>
-            <div className="terminal-body" ref={terminalBodyRef}>
-                {history.map((entry, index) => (
-                    <div key={index}>
-                        {entry.command && <p className="terminal-command">$ {entry.command}</p>}
-                        <p className="terminal-output">{entry.output}</p>
-                    </div>
-                ))}
+        <>
+            <div className="terminal" onClick={() => inputRef.current.focus()}>
+                <div className="terminal-header">Interactive Terminal</div>
+                <div className="terminal-body" ref={terminalBodyRef}>
+                    {history.map((entry, index) => (
+                        <div key={index}>
+                            {entry.command && <p className="terminal-command">$ {entry.command}</p>}
+                            <p className="terminal-output">{entry.output}</p>
+                        </div>
+                    ))}
+                </div>
+                <div className="terminal-input-line">
+                    <span className="terminal-symbol">$</span>
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        className="terminal-input"
+                    />
+                </div>
             </div>
-            <div className="terminal-input-line">
-                <span className="terminal-symbol">$</span>
-                <input
-                    ref={inputRef}
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    className="terminal-input"
-                />
+            <div className="Tools">
+                <a href="#/Pomodoro">Pomodoro</a>
             </div>
-        </div>
+        </>
     );
 };
 

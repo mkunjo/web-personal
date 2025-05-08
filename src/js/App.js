@@ -5,7 +5,8 @@ import Footer from '../components/Footer';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Gallery from "../components/Gallery";
 import FlightLog from '../components/FlightLog';
-import Terminal from '../components/Terminal'
+import Terminal from '../components/Terminal';
+import Pomodoro from '../components/Pomodoro';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/FlightLog" element={<FlightLog />} />
           <Route path="/Terminal" element={<Terminal />} />
+          <Route path="/Pomodoro" element={<Pomodoro />} />
         </Routes>
         <Footer />
       </div>
