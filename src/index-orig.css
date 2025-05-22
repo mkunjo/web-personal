@@ -338,7 +338,7 @@ text-align: right;
 .flight-entry .total-time {
   font-style: italic;
 }
-/* Tech page */
+
 .terminal {
   width: 100%;
   max-width: 800px;
@@ -401,203 +401,171 @@ text-align: right;
   white-space: pre;
   font-family: monospace;
 }
-.tech-thumbnail {
-  border-radius: 8px; /* rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* soft shadow */
-  transition: box-shadow 0.3s ease;
-}
+/* Tailwind */
+:is(timer-root, timer-root *) {
+  /*! tailwindcss v4.1.5 | MIT License | https://tailwindcss.com */
 
-.tech-thumbnail:hover {
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* stronger shadow on hover */
-}
-.tech-thumbnail {
-  width: 250px;
-  object-fit: cover;
-}
-/* ========================================
-   Pomodoro Styling
-======================================== */
-.pomodoro-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  background: #e0e0e0;
-  box-shadow: 4px 4px 16px #bebebe, -4px -4px 16px #ffffff;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
+  @layer properties;
 
-.pomodoro-container.dark {
-  background: #1e1e1e;
-  box-shadow: 4px 4px 16px #111, -4px -4px 16px #2a2a2a;
-}
+  @layer theme {
+    :root,
+    :host {
+      --radius: 0.5rem;
+    }
+  }
 
-.pomodoro-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  background: inherit;
-  box-shadow: inherit;
-  transition: background 0.3s ease;
-}
+  @layer base {
+    * {
+      border-color: hsl(var(--border));
+    }
 
-.pomodoro-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #444;
-}
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-feature-settings: "rlig" 1, "calt" 1;
+      font-family: theme("fontFamily.sans");
+      font-variation-settings: normal;
+    }
 
-.pomodoro-title.dark {
-  color: #eee;
-}
+    .border {
+      border-width: 1px;
+    }
 
-.pomodoro-timer {
-  font-size: 4rem;
-  font-weight: 800;
-  margin: 2rem 0;
-  color: #6366f1;
-  text-shadow: 2px 2px 4px #d1d5db;
-}
+    .border-b {
+      border-bottom-width: 1px;
+    }
 
-.pomodoro-timer.dark {
-  text-shadow: 2px 2px 4px #111;
-}
+    .border-t {
+      border-top-width: 1px;
+    }
 
-.pomodoro-controls {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
-}
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
 
-.pomodoro-button {
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 999px;
-  background: #f0f0f0;
-  color: #333;
-  cursor: pointer;
-  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
-  transition: all 0.3s ease;
-}
+    .text-muted-foreground {
+      color: hsl(var(--muted-foreground));
+    }
 
-.pomodoro-button:hover {
-  background: #e5e5e5;
-}
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
 
-.pomodoro-button.dark {
-  background: #2e2e2e;
-  color: #eee;
-  box-shadow: 4px 4px 8px #1c1c1c, -4px -4px 8px #3c3c3c;
-}
+    .py-6 {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
 
-.pomodoro-button.dark:hover {
-  background: #3a3a3a;
-}
+    .text-center {
+      text-align: center;
+    }
 
-.pomodoro-mode-button {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 1rem;
-  background: #f3f4f6;
-  color: #444;
-  cursor: pointer;
-  border: none;
-  box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
-  transition: all 0.3s ease;
-}
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
 
-.pomodoro-mode-button.active {
-  background: #6366f1;
-  color: white;
-  box-shadow: 4px 4px 8px #4f46e5, -4px -4px 8px #7c3aed;
-}
+    .font-semibold {
+      font-weight: 600;
+    }
 
-.pomodoro-mode-button.dark {
-  background: #2a2a2a;
-  color: #ccc;
-  box-shadow: 4px 4px 8px #1c1c1c, -4px -4px 8px #3c3c3c;
-}
+    .tracking-tight {
+      letter-spacing: -0.01562em;
+    }
 
-.pomodoro-mode-button.active.dark {
-  background: #8b5cf6;
-  color: white;
-  box-shadow: 4px 4px 8px #7c3aed, -4px -4px 8px #a78bfa;
-}
+    .container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
 
-.pomodoro-settings {
-  width: 100%;
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 1rem;
-  font-size: 0.9rem;
-}
+    @media (min-width: 640px) {
+      .container {
+        max-width: 640px;
+      }
+    }
 
-.pomodoro-settings-label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: 600;
-  color: #555;
-}
+    @media (min-width: 768px) {
+      .container {
+        max-width: 768px;
+      }
+    }
 
-.pomodoro-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 14px;
-  border-radius: 10px;
-  background: #ddd;
-  cursor: pointer;
-  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
-  transition: background 0.3s ease;
-}
+    @media (min-width: 1024px) {
+      .container {
+        max-width: 1024px;
+      }
+    }
 
-.pomodoro-slider:hover {
-  background: #ccc;
-}
+    @media (min-width: 1280px) {
+      .container {
+        max-width: 1280px;
+      }
+    }
 
-.pomodoro-slider:focus {
-  outline: none;
-  background: #bbb;
-}
+    @media (min-width: 1536px) {
+      .container {
+        max-width: 1536px;
+      }
+    }
+  }
 
-/* WebKit Thumb */
-.pomodoro-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #6366f1;
-  cursor: pointer;
-  box-shadow: 4px 4px 8px #4f46e5, -4px -4px 8px #7c3aed;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  margin-top: -7px;
-}
+  @layer utilities {
+    .m-0 {
+      margin: 0px;
+    }
 
-.pomodoro-slider::-webkit-slider-thumb:hover {
-  background: #4f46e5;
-  box-shadow: 6px 6px 12px #3b36c2, -6px -6px 12px #9259f5;
-}
+    .flex {
+      display: flex;
+    }
 
-/* Firefox Thumb */
-.pomodoro-slider::-moz-range-thumb {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #6366f1;
-  cursor: pointer;
-  box-shadow: 4px 4px 8px #4f46e5, -4px -4px 8px #7c3aed;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
+    .h-24 {
+      height: 6rem;
+    }
 
-.pomodoro-slider::-moz-range-thumb:hover {
-  background: #4f46e5;
-  box-shadow: 6px 6px 12px #3b36c2, -6px -6px 12px #9259f5;
+    .w-full {
+      width: 100%;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .text-primary {
+      color: hsl(var(--primary));
+    }
+
+    .underline {
+      text-decoration-line: underline;
+    }
+
+    .decoration-primary {
+      text-decoration-color: hsl(var(--primary));
+    }
+  }
 }

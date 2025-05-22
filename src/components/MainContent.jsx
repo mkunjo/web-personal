@@ -1,7 +1,6 @@
 import React from 'react';
 import '../index.css';
 
-
 const MainContent = () => {
   return (
     <main>
@@ -9,7 +8,7 @@ const MainContent = () => {
       <section id="profile" className="profile-section">
         <div className="landing">
           <h1>Hi, I'm Muhammad</h1>
-          <img src="/assets/images/IMG_4253-modified.png" alt="Profile pic" />
+          <img src="/assets/images/creator.png" alt="Profile pic" />
         </div>
         <hr />
         <h2 className="programmer">

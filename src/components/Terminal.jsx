@@ -6,7 +6,8 @@ const Terminal = () => {
     const [history, setHistory] = useState([
         { output: "Welcome to my Terminal" },
         { output: "Type 'help' to see available commands." },
-        { output: `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        {
+            output: `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⣀⣀⣠⣤⠴⠦⠶⠿⠿⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠿⠷⠶⠦⠤⢤⣤⣀⣀⣀⠀⠀⠀⠀⠀⠀
 ⠀⠀⣸⡏⠉⠀⠀⢀⣀⣀⣄⣤⣴⣶⠶⠶⠶⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠲⠶⠶⢶⣤⣴⣴⣀⣀⠀⠀⢀⠀⠉⠙⡗⠲⣤⡀⠀⠀
 ⠀⠀⡟⠀⠀⢰⡞⢹⡏⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠙⢻⡄⠀⠀⣿⠀⠀⢻⡆⠀
@@ -72,7 +73,7 @@ const Terminal = () => {
 ⠀⠀⣸⠕⢋⡽⠻⣶⣅⣇⠈⠰⠁⡇⠄⢰⠀⠀⠀⠀⠠⢠⣴⠠⠀⠃⠀⠀⢀⣀⣤⣴⡾⢟⡿⢣⠞⣡⠞⢀⡜⠁⠀⠀
 ⠀⠀⡴⠊⢁⡠⠚⠉⢉⡿⠛⢿⠷⢶⣶⣶⣦⣤⣤⣤⣤⣶⣶⣶⠶⡾⠿⠛⡿⠋⡩⠋⠠⠋⡴⢃⡜⠁⠀⠎⠀⠈⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠘⠁⠀⠚⠁⠐⠋⠀⠊⠀⠘⠁⠀⠁⠀⠈⠀⠘⠁⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
-const exp = `Languages: Java, JavaScript, Python, C++, R, SQL (PostgreSQL, Oracle);
+    const exp = `Languages: Java, JavaScript, Python, C++, R, SQL (PostgreSQL, Oracle);
 
 Frameworks: ASP.NET Web API, ReactJS, AngularJS, Android SDK, jQuery,
 Bootstrap, MaterializeCSS, Spring;
@@ -207,7 +208,15 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                 </div>
             </div>
             <div className="Tools">
-                <a href="#/Pomodoro">Pomodoro</a>
+                <h2 className="Tools-heading">Tools/Projects:</h2>
+                <h3 className="tool">Pomodoro timer:</h3>
+                <a href="#/Pomodoro">
+                    <img
+                        src="assets/images/pomodoro-thumb.png"
+                        alt="Pomodoro Tool Thumbnail"
+                        className="tech-thumbnail"
+                    />
+                </a>
             </div>
         </>
     );
