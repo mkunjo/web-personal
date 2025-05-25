@@ -414,8 +414,51 @@ text-align: right;
   width: 250px;
   object-fit: cover;
 }
+.Utilities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.utilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    justify-content: center; /* This centers the items */
+    max-width: 1000px;        /* Optional: to prevent stretching on wide screens */
+    width: 100%;
+}
+
+.utility-item {
+    text-align: center;
+}
+
+.tech-thumbnail {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.tech-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .utilities-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .tech-thumbnail {
+        max-width: 100%;
+    }
+}
+
 /* ========================================
-   Pomodoro Styling
+   Pomodoro 
 ======================================== */
 .pomodoro-container {
   width: 100%;
@@ -600,4 +643,208 @@ text-align: right;
 .pomodoro-slider::-moz-range-thumb:hover {
   background: #4f46e5;
   box-shadow: 6px 6px 12px #3b36c2, -6px -6px 12px #9259f5;
+}
+
+/* ========================================
+   Password Generator
+======================================== */
+.password-generator {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.display-section {
+  margin-bottom: 1.5rem;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.password-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.input-actions {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  background-color: #f1f1f1;
+  border-left: 1px solid #ccc;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.icon-button:hover {
+  color: #000;
+}
+
+.copied-icon {
+  color: green;
+}
+
+.strength-wrapper {
+  margin-top: 0.75rem;
+}
+
+.strength-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.strength-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.strength-value {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.strength-bar-background {
+  width: 100%;
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.strength-bar {
+  height: 8px;
+  transition: width 0.3s ease;
+}
+
+/* Strength Colors */
+.strength-weak {
+  color: #e63946;
+  background-color: #e63946;
+}
+
+.strength-medium {
+  color: #f4a261;
+  background-color: #f4a261;
+}
+
+.strength-strong {
+  color: #2a9d8f;
+  background-color: #2a9d8f;
+}
+
+.slider-section {
+  margin-bottom: 1.5rem;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.slider {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  background: #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #0077ff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #005fcc;
+}
+
+.options-section {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.generate-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.generate-button:hover {
+  background-color: #005fcc;
+}
+
+.copied-notification {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: green;
 }

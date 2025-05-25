@@ -207,17 +207,32 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                     />
                 </div>
             </div>
-            <div className="Tools">
-                <h2 className="Tools-heading">Tools/Projects:</h2>
-                <h3 className="tool">Pomodoro timer:</h3>
-                <a href="#/Pomodoro">
-                    <img
-                        src="assets/images/pomodoro-thumb.png"
-                        alt="Pomodoro Tool Thumbnail"
-                        className="tech-thumbnail"
-                    />
-                </a>
+            <div className="Utilities">
+                <h2 className="Utilities-heading">Tools/Utilities:</h2>
+                <div className="utilities-grid">
+                    <div className="utility-item">
+                        <h3 className="util">Pomodoro timer:</h3>
+                        <a href="#/Pomodoro">
+                            <img
+                                src="assets/images/pomodoro-thumb.png"
+                                alt="Pomodoro Tool Thumbnail"
+                                className="tech-thumbnail"
+                            />
+                        </a>
+                    </div>
+                    <div className="utility-item">
+                        <h3 className="util">Password Generator:</h3>
+                        <a href="#/PasswordGenerator">
+                            <img
+                                src="assets/images/passGenerator-thumb.png"
+                                alt="Password Generator Tool Thumbnail"
+                                className="tech-thumbnail"
+                            />
+                        </a>
+                    </div>
+                </div>
             </div>
+
         </>
     );
 };

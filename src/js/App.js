@@ -7,6 +7,7 @@ import Gallery from "../components/Gallery";
 import FlightLog from '../components/FlightLog';
 import Terminal from '../components/Terminal';
 import Pomodoro from '../components/Pomodoro';
+import PasswordGenerator from '../components/PasswordGenerator';
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/FlightLog" element={<FlightLog />} />
           <Route path="/Terminal" element={<Terminal />} />
           <Route path="/Pomodoro" element={<Pomodoro />} />
+          <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
         </Routes>
         <Footer />
       </div>
