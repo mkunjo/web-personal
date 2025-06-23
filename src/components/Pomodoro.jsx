@@ -324,7 +324,6 @@ export default function Pomodoro() {
                 `
         }
     };
-
     // CSS for slider webkit styling
     const sliderStyles = `
         .neu-slider::-webkit-slider-thumb {
