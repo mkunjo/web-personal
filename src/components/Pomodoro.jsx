@@ -3,20 +3,34 @@ import { Play, Pause, Square, Settings, Volume2, VolumeX, Sun, Moon } from 'luci
 import '../index.css';
 
 export default function Pomodoro() {
+    // State for the current mode: 'work', 'shortBreak', or 'longBreak'
     const [mode, setMode] = useState('work');
+
+    // Tracks whether the timer is currently running
     const [isActive, setIsActive] = useState(false);
+
+    // Countdown in seconds
     const [secondsLeft, setSecondsLeft] = useState(1500);
+
+    // Number of completed work sessions
     const [sessions, setSessions] = useState(0);
+
+    // Controls whether the alarm sound plays
     const [soundEnabled, setSoundEnabled] = useState(true);
+
+    // Toggles visibility of the settings panel
     const [showSettings, setShowSettings] = useState(false);
+
+    // Optional dark mode toggle
     const [darkMode, setDarkMode] = useState(false);
 
+    // Duration settings (in minutes)
     const [workDuration, setWorkDuration] = useState(25);
     const [shortBreakDuration, setShortBreakDuration] = useState(5);
     const [longBreakDuration, setLongBreakDuration] = useState(15);
     const [sessionsBeforeLongBreak, setSessionsBeforeLongBreak] = useState(4);
 
-    // Add timestamp tracking for accurate timing
+    // References to track timing and sound
     const startTimeRef = useRef(null);
     const initialDurationRef = useRef(null);
     const audioRef = useRef(null);
@@ -25,20 +39,21 @@ export default function Pomodoro() {
         let interval = null;
         
         if (isActive) {
-            // Record start time and initial duration when timer starts
+            // Set start time and total countdown only when timer starts
             if (!startTimeRef.current) {
                 startTimeRef.current = Date.now();
                 initialDurationRef.current = secondsLeft;
             }
-            
+
             interval = setInterval(() => {
                 const now = Date.now();
                 const elapsed = Math.floor((now - startTimeRef.current) / 1000);
                 const remaining = Math.max(0, initialDurationRef.current - elapsed);
-                
+
                 setSecondsLeft(remaining);
-                
+
                 if (remaining === 0) {
+                    // Timer ends — switch mode, optionally play sound
                     clearInterval(interval);
                     setIsActive(false);
                     startTimeRef.current = null;
@@ -48,6 +63,7 @@ export default function Pomodoro() {
                         audioRef.current.play().catch(e => console.log('Audio play failed:', e));
                     }
 
+                    // Cycle through work and breaks
                     if (mode === 'work') {
                         const nextSession = sessions + 1;
                         setSessions(nextSession);
@@ -63,41 +79,55 @@ export default function Pomodoro() {
                         setSecondsLeft(workDuration * 60);
                     }
                 }
-            }, 100); // Check more frequently for smoother updates
+            }, 100); // Small interval for smoother updates
         } else {
             clearInterval(interval);
-            // Reset timestamp tracking when paused
+            // Pause resets timestamp tracking
             startTimeRef.current = null;
             initialDurationRef.current = null;
         }
-        
-        return () => clearInterval(interval);
-    }, [isActive, mode, sessions, shortBreakDuration, longBreakDuration, workDuration, sessionsBeforeLongBreak, soundEnabled]);
 
+        return () => clearInterval(interval);
+    }, [
+        isActive,
+        mode,
+        sessions,
+        shortBreakDuration,
+        longBreakDuration,
+        workDuration,
+        sessionsBeforeLongBreak,
+        soundEnabled
+    ]);
+
+    // Formats seconds into MM:SS
     const formatTime = (secs) => {
         const m = Math.floor(secs / 60).toString().padStart(2, '0');
         const s = (secs % 60).toString().padStart(2, '0');
         return `${m}:${s}`;
     };
 
+    // Start or pause the timer
     const toggleTimer = () => {
         if (!isActive) {
-            // When starting, reset the timestamp tracking
+            // Reset timestamp tracking when starting
             startTimeRef.current = null;
             initialDurationRef.current = null;
         }
         setIsActive(!isActive);
     };
-    
+
+    // Reset timer to initial value based on current mode
     const resetTimer = () => {
         if (mode === 'work') setSecondsLeft(workDuration * 60);
         else if (mode === 'shortBreak') setSecondsLeft(shortBreakDuration * 60);
         else if (mode === 'longBreak') setSecondsLeft(longBreakDuration * 60);
+        
         setIsActive(false);
         startTimeRef.current = null;
         initialDurationRef.current = null;
     };
 
+    // Mute/unmute end-of-session alarm
     const toggleSound = () => setSoundEnabled(!soundEnabled);
 
     const styles = {
