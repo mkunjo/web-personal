@@ -16,44 +16,61 @@ export default function Pomodoro() {
     const [longBreakDuration, setLongBreakDuration] = useState(15);
     const [sessionsBeforeLongBreak, setSessionsBeforeLongBreak] = useState(4);
 
+    // Add timestamp tracking for accurate timing
+    const startTimeRef = useRef(null);
+    const initialDurationRef = useRef(null);
     const audioRef = useRef(null);
 
     useEffect(() => {
         let interval = null;
+        
         if (isActive) {
+            // Record start time and initial duration when timer starts
+            if (!startTimeRef.current) {
+                startTimeRef.current = Date.now();
+                initialDurationRef.current = secondsLeft;
+            }
+            
             interval = setInterval(() => {
-                setSecondsLeft((prev) => {
-                    if (prev === 0) {
-                        clearInterval(interval);
-                        setIsActive(false);
+                const now = Date.now();
+                const elapsed = Math.floor((now - startTimeRef.current) / 1000);
+                const remaining = Math.max(0, initialDurationRef.current - elapsed);
+                
+                setSecondsLeft(remaining);
+                
+                if (remaining === 0) {
+                    clearInterval(interval);
+                    setIsActive(false);
+                    startTimeRef.current = null;
+                    initialDurationRef.current = null;
 
-                        if (soundEnabled && audioRef.current) {
-                            audioRef.current.play();
-                        }
-
-                        if (mode === 'work') {
-                            const nextSession = sessions + 1;
-                            setSessions(nextSession);
-                            if (nextSession % sessionsBeforeLongBreak === 0) {
-                                setMode('longBreak');
-                                setSecondsLeft(longBreakDuration * 60);
-                            } else {
-                                setMode('shortBreak');
-                                setSecondsLeft(shortBreakDuration * 60);
-                            }
-                        } else {
-                            setMode('work');
-                            setSecondsLeft(workDuration * 60);
-                        }
-
-                        return 0;
+                    if (soundEnabled && audioRef.current) {
+                        audioRef.current.play().catch(e => console.log('Audio play failed:', e));
                     }
-                    return prev - 1;
-                });
-            }, 1000);
+
+                    if (mode === 'work') {
+                        const nextSession = sessions + 1;
+                        setSessions(nextSession);
+                        if (nextSession % sessionsBeforeLongBreak === 0) {
+                            setMode('longBreak');
+                            setSecondsLeft(longBreakDuration * 60);
+                        } else {
+                            setMode('shortBreak');
+                            setSecondsLeft(shortBreakDuration * 60);
+                        }
+                    } else {
+                        setMode('work');
+                        setSecondsLeft(workDuration * 60);
+                    }
+                }
+            }, 100); // Check more frequently for smoother updates
         } else {
             clearInterval(interval);
+            // Reset timestamp tracking when paused
+            startTimeRef.current = null;
+            initialDurationRef.current = null;
         }
+        
         return () => clearInterval(interval);
     }, [isActive, mode, sessions, shortBreakDuration, longBreakDuration, workDuration, sessionsBeforeLongBreak, soundEnabled]);
 
@@ -63,12 +80,22 @@ export default function Pomodoro() {
         return `${m}:${s}`;
     };
 
-    const toggleTimer = () => setIsActive(!isActive);
+    const toggleTimer = () => {
+        if (!isActive) {
+            // When starting, reset the timestamp tracking
+            startTimeRef.current = null;
+            initialDurationRef.current = null;
+        }
+        setIsActive(!isActive);
+    };
+    
     const resetTimer = () => {
         if (mode === 'work') setSecondsLeft(workDuration * 60);
         else if (mode === 'shortBreak') setSecondsLeft(shortBreakDuration * 60);
         else if (mode === 'longBreak') setSecondsLeft(longBreakDuration * 60);
         setIsActive(false);
+        startTimeRef.current = null;
+        initialDurationRef.current = null;
     };
 
     const toggleSound = () => setSoundEnabled(!soundEnabled);
