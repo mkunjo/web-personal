@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
+    "diff": "^8.0.2",
     "lightbox.js-react": "^1.4.9",
     "lucide-react": "^0.508.0",
     "react": "^19.0.0",
