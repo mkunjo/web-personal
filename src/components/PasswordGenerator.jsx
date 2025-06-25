@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Copy, RefreshCw, Eye, EyeOff, Check } from 'lucide-react';
-import '../index.css';
+import '../styles/index.css'; 
+import '../styles/tech.css'; 
 
 const PasswordGenerator = () => {
   const [password, setPassword] = useState('');

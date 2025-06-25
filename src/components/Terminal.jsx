@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../index.css";
+import '../styles/index.css'; 
+import '../styles/tech.css'; 
 
 const Terminal = () => {
     const [input, setInput] = useState("");

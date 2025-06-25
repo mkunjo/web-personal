@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AlbumList from "./AlbumList";
 import PhotoGallery from "./PhotoGallery";
-import '../index.css';
+import '../styles/index.css'; 
 
 
 function Gallery() {

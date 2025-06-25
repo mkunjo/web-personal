@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, Square, Settings, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
-import '../index.css';
+import '../styles/index.css'; 
+import '../styles/tech.css'; 
 
 export default function Pomodoro() {
     // State for the current mode: 'work', 'shortBreak', or 'longBreak'
