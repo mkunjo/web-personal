@@ -8,6 +8,7 @@ import FlightLog from '../components/FlightLog';
 import Terminal from '../components/Terminal';
 import Pomodoro from '../components/Pomodoro';
 import PasswordGenerator from '../components/PasswordGenerator';
+import DiffChecker from '../components/DiffChecker';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/Terminal" element={<Terminal />} />
           <Route path="/Pomodoro" element={<Pomodoro />} />
           <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
+          <Route path="/DiffChecker" element={<DiffChecker />} />
         </Routes>
         <Footer />
       </div>

@@ -1,6 +1,8 @@
 /* Tech page / Utilities styles */
 
-/* Terminal container styling */
+/* ========================================
+   Terminal Container styles
+======================================== */
 .terminal {
   width: 100%;
   max-width: 800px;
@@ -70,7 +72,7 @@
   font-family: monospace;
 }
 
-/* Thumbnails for tech utilities images */
+/* Thumbnails for tech / Utilities images */
 .tech-thumbnail {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -544,4 +546,241 @@
   text-align: center;
   font-size: 0.9rem;
   color: green;
+}
+
+/* ========================================
+   Diff Checker styles
+======================================== */
+
+/* Base Container */
+.diff-container {
+  min-height: 100vh;
+  font-family: Monaco, Menlo, "Ubuntu Mono", monospace;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Themes */
+.diff-container.light {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.diff-container.dark {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-bottom: 2px solid var(--border);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4a9eff, currentColor);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.theme-toggle input {
+  width: 16px;
+  height: 16px;
+}
+
+/* Text Areas */
+.textarea-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.textarea-header {
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.code-input {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  width: 100%;
+  height: 220px;
+  padding: 16px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.6;
+}
+
+/* Diff Grid */
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  max-height: 600px;
+}
+
+.diff-column {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.diff-header {
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--header-bg);
+}
+
+.diff-line {
+  display: flex;
+  min-height: 22px;
+  line-height: 22px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  overflow-y: auto;
+}
+
+.line-number {
+  width: 60px;
+  padding: 0 10px;
+  text-align: right;
+  font-size: 11px;
+  flex-shrink: 0;
+  user-select: none;
+  border-right: 1px solid var(--border);
+}
+
+.line-content {
+  padding: 0 14px;
+  flex: 1;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Diff Types */
+.diff-line.same {
+  background-color: var(--same);
+}
+
+.diff-line.added {
+  background-color: var(--added);
+  color: var(--added-text);
+}
+
+.diff-line.removed {
+  background-color: var(--removed);
+  color: var(--removed-text);
+}
+
+.diff-line.empty {
+  background-color: var(--empty);
+  color: var(--empty-text);
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  font-size: 13px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.same {
+  background-color: var(--same);
+}
+
+.dot.added {
+  background-color: var(--added);
+}
+
+.dot.removed {
+  background-color: var(--removed);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+/* Light Theme Variables */
+.diff-container.light {
+  --border: #ddd;
+  --same: #fff;
+  --added: #d4edda;
+  --added-text: #267f00;
+  --removed: #f8d7da;
+  --removed-text: #b31d28;
+  --empty: #f8f9fa;
+  --empty-text: #999;
+  --header-bg: #f5f5f5;
+  --input-bg: #fafafa;
+  --input-text: #333;
+}
+
+/* Dark Theme Variables */
+.diff-container.dark {
+  --border: #333;
+  --same: #2d2d2d;
+  --added: #1e4d3e;
+  --added-text: #b5f4cb;
+  --removed: #4d1e1e;
+  --removed-text: #f4b5b5;
+  --empty: #3a3a3a;
+  --empty-text: #777;
+  --header-bg: #252525;
+  --input-bg: #2d2d2d;
+  --input-text: #e0e0e0;
 }
