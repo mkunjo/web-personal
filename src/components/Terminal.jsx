@@ -231,6 +231,16 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                             />
                         </a>
                     </div>
+                    <div className="utility-item">
+                        <h3 className="util">Difference Checker:</h3>
+                        <a href="#/DiffChecker">
+                            <img
+                                src="assets/images/diffChecker-thumb.png"
+                                alt="Difference Checker Tool Thumbnail"
+                                className="tech-thumbnail"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
 
