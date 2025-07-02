@@ -241,6 +241,16 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                             />
                         </a>
                     </div>
+                    <div className="utility-item">
+                        <h3 className="util">Visual transcription:</h3>
+                        <a href="#/Transcribe">
+                            <img
+                                src="assets/images/diffChecker-thumb.png"
+                                alt="Transcription Tool Thumbnail"
+                                className="tech-thumbnail"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
 

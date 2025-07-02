@@ -12,10 +12,13 @@
     "diff": "^8.0.2",
     "lightbox.js-react": "^1.4.9",
     "lucide-react": "^0.508.0",
+    "pdfjs-dist": "^3.11.174",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.0",
     "react-scripts": "^5.0.1",
+    "react-webcam": "^7.2.0",
+    "tesseract.js": "^6.0.1",
     "web-vitals": "^4.2.4"
   },
   "scripts": {

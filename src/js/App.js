@@ -9,6 +9,7 @@ import Terminal from '../components/Terminal';
 import Pomodoro from '../components/Pomodoro';
 import PasswordGenerator from '../components/PasswordGenerator';
 import DiffChecker from '../components/DiffChecker';
+import Transcribe from '../components/Transcribe';
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/Pomodoro" element={<Pomodoro />} />
           <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
           <Route path="/DiffChecker" element={<DiffChecker />} />
+          <Route path="/Transcribe" element={<Transcribe />} />
         </Routes>
         <Footer />
       </div>
