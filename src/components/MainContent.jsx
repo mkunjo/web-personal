@@ -43,10 +43,10 @@ const MainContent = () => {
           <li><strong>Georgia State University:</strong></li>
           <ul className="rel-courses list">
             <li>Data Structures</li>
-            <li>Computer Organization & Programming</li>
+            <li>Software Engineering</li>
             <li>Mathematical modeling for Computer Science</li>
             <li>Algorithms & Analysis</li>
-            <li>Web Programming</li>
+            <li>Machine Learning</li>
             <li>Data Visualization</li>
             <li>Computer Architecture</li>
           </ul>

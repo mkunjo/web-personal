@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Tesseract from 'tesseract.js';
 import Webcam from 'react-webcam';
 import * as pdfjsLib from 'pdfjs-dist';
+import '../styles/index.css'; 
 import '../styles/tech.css'; 
 
 // Set PDF.js worker
@@ -16,6 +17,8 @@ const Transcribe = () => {
   const [processingInfo, setProcessingInfo] = useState('');
   const [fileType, setFileType] = useState('');
   const [showWebcam, setShowWebcam] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [speechInstance, setSpeechInstance] = useState(null);
   const webcamRef = useRef(null);
 
   useEffect(() => {
@@ -214,6 +217,8 @@ const Transcribe = () => {
   };
 
   const clearResults = () => {
+    // Stop any ongoing speech
+    stopSpeech();
     setImageText('');
     setError('');
     setWebcamError('');
@@ -238,6 +243,76 @@ const Transcribe = () => {
       console.error('Failed to copy text:', err);
     }
   };
+
+  const playText = () => {
+    if (!imageText.trim()) return;
+
+    // Stop current speech if playing
+    if (isPlaying) {
+      stopSpeech();
+      return;
+    }
+
+    // Check if speech synthesis is supported
+    if (!('speechSynthesis' in window)) {
+      setError('Text-to-speech is not supported in your browser.');
+      return;
+    }
+
+    try {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(imageText);
+      
+      // Configure speech settings
+      utterance.rate = 0.9; // Slightly slower for better clarity
+      utterance.pitch = 1;
+      utterance.volume = 1;
+
+      // Event handlers
+      utterance.onstart = () => {
+        setIsPlaying(true);
+      };
+
+      utterance.onend = () => {
+        setIsPlaying(false);
+        setSpeechInstance(null);
+      };
+
+      utterance.onerror = (event) => {
+        setIsPlaying(false);
+        setSpeechInstance(null);
+        setError(`Speech synthesis error: ${event.error}`);
+      };
+
+      // Store the utterance instance
+      setSpeechInstance(utterance);
+
+      // Start speaking
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {
+      setError(`Failed to play text: ${err.message}`);
+      setIsPlaying(false);
+    }
+  };
+
+  const stopSpeech = () => {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlaying(false);
+    setSpeechInstance(null);
+  };
+
+  // Cleanup speech on component unmount
+  useEffect(() => {
+    return () => {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   return (
     <div className="transcribe-container">
@@ -332,6 +407,14 @@ const Transcribe = () => {
             </h3>
             <div className="results-actions">
               <button
+                onClick={playText}
+                className={`play-btn ${isPlaying ? 'playing' : ''}`}
+                aria-label={isPlaying ? 'Stop reading text' : 'Play text aloud'}
+                disabled={!imageText.trim()}
+              >
+                {isPlaying ? '⏸️ Stop' : '▶️ Play'}
+              </button>
+              <button
                 onClick={copyToClipboard}
                 className="copy-btn"
                 aria-label="Copy extracted text to clipboard"
@@ -371,9 +454,8 @@ const Transcribe = () => {
           <li>Upload an image file, PDF, or use your webcam to capture text</li>
           <li>PDFs: Text-based PDFs extract text directly, scanned PDFs use OCR</li>
           <li>Ensure text is clear and well-lit for best OCR results</li>
-          <li>Supported languages: English (can be extended to support more)</li>
+          <li>Supported languages: English (More to come)</li>
           <li>Processing time depends on file size, type, and text complexity</li>
-          <li>You can paste images directly using Ctrl+V (Cmd+V on Mac)</li>
         </ul>
       </div>
     </div>

@@ -209,7 +209,7 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                 </div>
             </div>
             <div className="Utilities">
-                <h2 className="Utilities-heading">Tools/Utilities:</h2>
+                <h2 className="Utilities-heading">Tools/Utilities I created for personal use:</h2>
                 <div className="utilities-grid">
                     <div className="utility-item">
                         <h3 className="util">Pomodoro timer:</h3>
@@ -242,10 +242,10 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                         </a>
                     </div>
                     <div className="utility-item">
-                        <h3 className="util">Visual transcription:</h3>
+                        <h3 className="util">Transcription:</h3>
                         <a href="#/Transcribe">
                             <img
-                                src="assets/images/diffChecker-thumb.png"
+                                src="assets/images/transcribe-thumb.png"
                                 alt="Transcription Tool Thumbnail"
                                 className="tech-thumbnail"
                             />

@@ -334,7 +334,6 @@
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Title and subtitle */
@@ -793,7 +792,6 @@
   padding: 2rem;
   max-width: 800px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
 }
 
 /* Title */
@@ -838,12 +836,48 @@
   text-align: center;
 }
 
+.webcam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.webcam-header h3 {
+  margin: 0;
+}
+
+.webcam-toggle-btn {
+  padding: 0.5rem 1rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+
+.webcam-toggle-btn:hover {
+  background-color: #5a6268;
+}
+
+.webcam-toggle-btn.active {
+  background-color: #dc3545;
+}
+
+.webcam-toggle-btn.active:hover {
+  background-color: #c82333;
+}
+
 .webcam-error {
   color: red;
   margin-bottom: 1rem;
 }
 
 .webcam {
+  border: 1px solid #ddd;
+  border-radius: 4px;
   margin-bottom: 1rem;
 }
 
@@ -908,6 +942,34 @@
   gap: 0.5rem;
 }
 
+.play-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: background-color 0.2s;
+}
+
+.play-btn:hover {
+  background-color: #138496;
+}
+
+.play-btn.playing {
+  background-color: #dc3545;
+}
+
+.play-btn.playing:hover {
+  background-color: #c82333;
+}
+
+.play-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
 .copy-btn {
   padding: 0.25rem 0.5rem;
   background-color: #28a745;
@@ -930,7 +992,7 @@
 
 .extracted-text {
   white-space: pre-wrap;
-  background-color: #999;
+  /* background-color: #f8f9fa; */
   padding: 1rem;
   border-radius: 4px;
   border: 1px solid #e9ecef;
