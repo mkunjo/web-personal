@@ -209,7 +209,7 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                 </div>
             </div>
             <div className="Utilities">
-                <h2 className="Utilities-heading">Tools/Utilities I created for personal use:</h2>
+                <h2 className="Utilities-heading">DIY Utilities:</h2>
                 <div className="utilities-grid">
                     <div className="utility-item">
                         <h3 className="util">Pomodoro timer:</h3>
