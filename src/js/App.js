@@ -10,7 +10,7 @@ import Pomodoro from '../components/Pomodoro';
 import PasswordGenerator from '../components/PasswordGenerator';
 import DiffChecker from '../components/DiffChecker';
 import Transcribe from '../components/Transcribe';
-
+import ProduceDetector from '../components/ProduceDetector';
 
 const App = () => {
   return (
@@ -26,6 +26,7 @@ const App = () => {
           <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
           <Route path="/DiffChecker" element={<DiffChecker />} />
           <Route path="/Transcribe" element={<Transcribe />} />
+          <Route path="/ProduceDetector" element={<ProduceDetector/>} />
         </Routes>
         <Footer />
       </div>
