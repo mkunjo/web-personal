@@ -251,6 +251,16 @@ R Studio, Android Studio, Sitecore CMS, WordPress;`;
                             />
                         </a>
                     </div>
+                    <div className="utility-item">
+                        <h3 className="util">Object Detector:</h3>
+                        <a href="#/ProduceDetector">
+                            <img
+                                src="assets/images/produceDetector-thumb.png"
+                                alt="Object Detector Tool Thumbnail"
+                                className="tech-thumbnail"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
 

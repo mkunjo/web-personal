@@ -81,22 +81,37 @@ const ProduceDetector = () => {
       const formData = new FormData();
       formData.append('file', imageFile);
       
+      console.log('Sending request to backend...');
+      
       const response = await fetch('http://localhost:8000/detect', {
         method: 'POST',
         body: formData,
+        // Add timeout
+        signal: AbortSignal.timeout(30000), // 30 second timeout
       });
       
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
-        throw new Error('Detection failed');
+        const errorText = await response.text();
+        throw new Error(`Server error (${response.status}): ${errorText}`);
       }
       
       const result = await response.json();
+      console.log('Detection result:', result);
       setDetections(result.detections);
       
       // Stop webcam after capture
       stopWebcam();
     } catch (err) {
-      setError('Error detecting produce: ' + err.message);
+      console.error('Detection error:', err);
+      if (err.name === 'TypeError' && err.message.includes('fetch')) {
+        setError('Cannot connect to backend server. Make sure it\'s running on http://localhost:8000');
+      } else if (err.name === 'TimeoutError') {
+        setError('Request timed out. The server may be processing a large image.');
+      } else {
+        setError('Error detecting produce: ' + err.message);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -147,34 +162,86 @@ const ProduceDetector = () => {
   }, [imageData, detections]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+    <div style={{
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '24px',
+      backgroundColor: 'white',
+      borderRadius: '8px',
+      boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+    }}>
+      <h1 style={{
+        fontSize: '36px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: '32px',
+        color: '#374151'
+      }}>
         Produce Detection
       </h1>
       
       {/* Controls */}
-      <div className="flex flex-wrap gap-4 justify-center mb-6">
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '16px',
+        justifyContent: 'center',
+        marginBottom: '24px'
+      }}>
         {!isWebcamActive ? (
           <button
             onClick={startWebcam}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              backgroundColor: '#3B82F6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '14px'
+            }}
           >
             <Camera size={20} />
             Start Camera
           </button>
         ) : (
-          <div className="flex gap-2">
+          <div style={{ display: 'flex', gap: '8px' }}>
             <button
               onClick={captureImage}
               disabled={isLoading}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                backgroundColor: isLoading ? '#9CA3AF' : '#10B981',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: isLoading ? 'not-allowed' : 'pointer',
+                fontSize: '14px'
+              }}
             >
               <Camera size={20} />
               Capture
             </button>
             <button
               onClick={stopWebcam}
-              className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                backgroundColor: '#EF4444',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
             >
               Stop Camera
             </button>
@@ -184,7 +251,18 @@ const ProduceDetector = () => {
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={isLoading}
-          className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors disabled:opacity-50"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '8px 16px',
+            backgroundColor: isLoading ? '#9CA3AF' : '#8B5CF6',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: isLoading ? 'not-allowed' : 'pointer',
+            fontSize: '14px'
+          }}
         >
           <Upload size={20} />
           Upload Image
@@ -195,7 +273,7 @@ const ProduceDetector = () => {
           type="file"
           accept="image/*"
           onChange={handleFileUpload}
-          className="hidden"
+          style={{ display: 'none' }}
         />
         
         {(imageData || detections.length > 0) && (
@@ -205,7 +283,18 @@ const ProduceDetector = () => {
               setDetections([]);
               setError('');
             }}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              backgroundColor: '#6B7280',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '14px'
+            }}
           >
             <RefreshCw size={20} />
             Clear
@@ -215,19 +304,33 @@ const ProduceDetector = () => {
       
       {/* Camera View */}
       {isWebcamActive && (
-        <div className="mb-6">
+        <div style={{ marginBottom: '24px', textAlign: 'center' }}>
           <video
             ref={videoRef}
             autoPlay
             playsInline
-            className="w-full max-w-md mx-auto rounded-lg shadow-md"
+            style={{
+              width: '100%',
+              maxWidth: '500px',
+              borderRadius: '8px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            }}
           />
         </div>
       )}
       
       {/* Loading */}
       {isLoading && (
-        <div className="flex items-center justify-center gap-2 p-4 bg-blue-50 rounded-lg mb-6">
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px',
+          padding: '16px',
+          backgroundColor: '#EFF6FF',
+          borderRadius: '8px',
+          marginBottom: '24px'
+        }}>
           <Loader2 className="animate-spin" size={20} />
           <span>Detecting produce...</span>
         </div>
@@ -235,37 +338,75 @@ const ProduceDetector = () => {
       
       {/* Error */}
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg mb-6">
-          <p className="text-red-600">{error}</p>
+        <div style={{
+          padding: '16px',
+          backgroundColor: '#FEF2F2',
+          border: '1px solid #FECACA',
+          borderRadius: '8px',
+          marginBottom: '24px'
+        }}>
+          <p style={{ color: '#DC2626', margin: 0 }}>{error}</p>
         </div>
       )}
       
       {/* Results */}
       {imageData && (
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-4">Detection Results</h2>
-          <div className="flex flex-col lg:flex-row gap-6">
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{
+            fontSize: '24px',
+            fontWeight: '600',
+            marginBottom: '16px'
+          }}>Detection Results</h2>
+          <div style={{
+            display: 'flex',
+            flexDirection: window.innerWidth < 1024 ? 'column' : 'row',
+            gap: '24px'
+          }}>
             {/* Image with bounding boxes */}
-            <div className="flex-1">
+            <div style={{ flex: 1 }}>
               <canvas
                 ref={canvasRef}
-                className="max-w-full h-auto border rounded-lg shadow-md"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  border: '1px solid #E5E7EB',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                }}
               />
             </div>
             
             {/* Detection list */}
-            <div className="lg:w-80">
-              <h3 className="font-semibold mb-2">Detected Items ({detections.length})</h3>
-              <div className="space-y-2 max-h-60 overflow-y-auto">
+            <div style={{ width: window.innerWidth < 1024 ? '100%' : '320px' }}>
+              <h3 style={{
+                fontWeight: '600',
+                marginBottom: '8px'
+              }}>Detected Items ({detections.length})</h3>
+              <div style={{
+                maxHeight: '240px',
+                overflowY: 'auto'
+              }}>
                 {detections.map((detection, index) => (
                   <div
                     key={index}
-                    className="p-3 bg-gray-50 rounded-lg border"
+                    style={{
+                      padding: '12px',
+                      backgroundColor: '#F9FAFB',
+                      borderRadius: '8px',
+                      border: '1px solid #E5E7EB',
+                      marginBottom: '8px'
+                    }}
                   >
-                    <div className="font-medium text-gray-800">
+                    <div style={{
+                      fontWeight: '500',
+                      color: '#374151'
+                    }}>
                       {detection.class}
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div style={{
+                      fontSize: '14px',
+                      color: '#6B7280'
+                    }}>
                       Confidence: {(detection.confidence * 100).toFixed(1)}%
                     </div>
                   </div>
